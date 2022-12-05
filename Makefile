@@ -7,14 +7,15 @@ build: deps start
 deps: composer-install
 
 # 🐘 Composer
-composer-install: CMD=install
-composer-update: CMD=update
-composer composer-install composer-update:
-	@docker run --rm --interactive --volume $(current-dir):/app --user $(id -u):$(id -g) \
-		clevyr/prestissimo $(CMD) \
-			--ignore-platform-reqs \
-			--no-ansi \
-			--no-interaction
+
+composer-install:
+	docker run --rm -it --volume $(current-dir):/app php-ddd-skeleton_php composer install --ignore-platform-reqs --no-ansi --no-interaction
+
+composer-update:
+	docker run --rm -it --volume $(current-dir):/app php-ddd-skeleton_php composer update -W --ignore-platform-reqs --no-ansi --no-interaction
+
+composer-require:
+	docker run --rm -it --volume $(current-dir):/app php-ddd-skeleton_php composer require $(ARGS)
 
 reload:
 	@docker-compose exec php-fpm kill -USR2 1
