@@ -20,6 +20,7 @@
     "ramsey/uuid": "^3.8",
     "doctrine/dbal": "^2.9",
     "doctrine/orm": "^2.6",
+    "ocramius/proxy-manager": "^2.2.2",
     "elasticsearch/elasticsearch": "^7.3",
     "monolog/monolog": "^2.0"
   },
@@ -32,7 +33,9 @@
     "friends-of-behat/symfony-extension": "^2.0",
     "phpunit/phpunit": "^8.2",
     "mockery/mockery": "^1.2",
-    "fzaninotto/faker": "^1.8"
+    "fzaninotto/faker": "^1.8",
+    "wouterj/eloquent-bundle": "2.0.0",
+    "illuminate/database": "^6"
   },
   "autoload": {
     "psr-4": {

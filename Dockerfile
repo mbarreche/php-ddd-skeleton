@@ -18,3 +18,6 @@ RUN apk --update upgrade \
 
 COPY etc/infrastructure/php/ /usr/local/etc/php/
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN apk add --no-cache bash
+RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.alpine.sh' | bash
+RUN apk add symfony-cli
