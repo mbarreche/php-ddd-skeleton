@@ -17,4 +17,3 @@ RUN apk --update upgrade \
         opcache
 
 COPY etc/infrastructure/php/ /usr/local/etc/php/
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
