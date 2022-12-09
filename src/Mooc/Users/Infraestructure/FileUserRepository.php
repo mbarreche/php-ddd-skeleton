@@ -16,7 +16,7 @@ class FileUserRepository implements UserRepository
 
     public function saveUser(User $user): void
     {
-        file_put_contents($this->fileName($user->id()), $user->toString());
+        file_put_contents($this->fileName($user->id()->value()), $user->toString());
     }
 
     private function fileName(string $id): string
