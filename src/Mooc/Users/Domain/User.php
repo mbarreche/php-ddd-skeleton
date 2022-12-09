@@ -9,7 +9,7 @@ class User
     private $email;
     private $password;
 
-    public function __construct(string $id, string $name, string $email, string $password)
+    public function __construct(UserId $id, UserName $name, UserEmail $email, UserPassword $password)
     {
         $this->id = $id;
         $this->name = $name;
@@ -17,22 +17,22 @@ class User
         $this->password = $password;
     }
 
-    public function id(): string
+    public function id(): UserId
     {
         return $this->id;
     }
 
-    public function email(): string
+    public function email(): UserEmail
     {
         return $this->email;
     }
 
-    public function name(): string
+    public function name(): UserName
     {
         return $this->name;
     }
 
-    public function password(): string
+    public function password(): UserPassword
     {
         return $this->password;
     }
@@ -40,10 +40,10 @@ class User
     public function toString(): string
     {
         return json_encode([
-            'id' => $this->id(),
-            'name' => $this->name(),
-            'email' => $this->email(),
-            'password' => password_hash($this->password(), PASSWORD_DEFAULT)
+            'id' => $this->id()->value(),
+            'name' => $this->name()->value(),
+            'email' => $this->email()->value(),
+            'password' => password_hash($this->password()->value(), PASSWORD_DEFAULT)
         ]);
     }
 }
