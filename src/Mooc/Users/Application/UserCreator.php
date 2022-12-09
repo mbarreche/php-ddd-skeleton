@@ -3,6 +3,10 @@
 namespace CodelyTv\Mooc\Users\Application;
 
 use CodelyTv\Mooc\Users\Domain\User;
+use CodelyTv\Mooc\Users\Domain\UserEmail;
+use CodelyTv\Mooc\Users\Domain\UserId;
+use CodelyTv\Mooc\Users\Domain\UserName;
+use CodelyTv\Mooc\Users\Domain\UserPassword;
 use CodelyTv\Mooc\Users\Domain\UserRepository;
 
 class UserCreator
@@ -14,10 +18,14 @@ class UserCreator
         $this->repository = $repository;
     }
 
-    public function __invoke($id, string $name, string $email, string $password)
+    public function __invoke(CreateUserRequest $request)
     {
-        $user = new User($id, $name, $email, $password);
-
+        $user = new User(
+            new UserId($request->id()),
+            new UserName($request->name()),
+            new UserEmail($request->email()),
+            new UserPassword($request->password())
+        );
         $this->repository->saveUser($user);
     }
 }
