@@ -14,6 +14,6 @@ class UserEmailMother
 
     public static function random(): UserEmail
     {
-        return self::create(WordMother::random());
+        return self::create(WordMother::randomUserEmail());
     }
 }

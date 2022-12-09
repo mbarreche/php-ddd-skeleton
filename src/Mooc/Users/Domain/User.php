@@ -43,7 +43,7 @@ class User
             'id' => $this->id()->value(),
             'name' => $this->name()->value(),
             'email' => $this->email()->value(),
-            'password' => password_hash($this->password()->value(), PASSWORD_DEFAULT)
+            'password' => $this->password()->hashValue()
         ]);
     }
 }

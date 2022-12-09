@@ -16,6 +16,6 @@ final class CourseNameMother
 
     public static function random(): CourseName
     {
-        return self::create(WordMother::random());
+        return self::create(WordMother::randomWord());
     }
 }
