@@ -14,6 +14,6 @@ class UserNameMother
 
     public static function random(): UserName
     {
-        return self::create(WordMother::random());
+        return self::create(WordMother::randomUserName());
     }
 }

@@ -14,6 +14,6 @@ class UserPasswordMother
 
     public static function random(): UserPassword
     {
-        return self::create(WordMother::random());
+        return self::create(WordMother::randomUserPassword());
     }
 }
