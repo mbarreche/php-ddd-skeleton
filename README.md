@@ -10,3 +10,4 @@
 If you want to make a request to the server, here you have several examples:
 * `make http-get-health-check`
 * `make http-put-course`
+* `make http-put-user`

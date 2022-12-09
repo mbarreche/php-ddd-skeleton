@@ -27,9 +27,11 @@ reload:
 	docker-compose exec nginx nginx -s reload
 
 run-tests:
-	docker-compose run --rm php /app/vendor/bin/phpstan analyse --xdebug -c etc/infrastructure/phpstan/phpstan.neon
 	docker-compose run --rm php /app/vendor/bin/phpunit --exclude-group='disabled' --log-junit build/test_results/phpunit/junit.xml tests
 	docker-compose run --rm php /app/vendor/bin/behat -p mooc_backend --format=progress -v
+
+phpstan:
+	docker-compose run --rm php /app/vendor/bin/phpstan analyse --xdebug -c etc/infrastructure/phpstan/phpstan.neon
 
 phpstan-baseline:
 	docker-compose run --rm php /app/vendor/bin/phpstan analyse \
@@ -40,3 +42,6 @@ http-get-health-check:
 
 http-put-course:
 	curl -X PUT --data name="ddd course" --data duration="500 hours" "http://172.29.0.30:8080/courses/1aab45ba-3c7a-4344-8936-78466eca77fa"
+
+http-put-user:
+	curl -X PUT --data name="John Smith" --data email=john.smith@mail.com --data password="123456" -i "http://172.29.0.30:8080/users/1aab45ba-3c7a-4344-8936-78466eca77fa"
