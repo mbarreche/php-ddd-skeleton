@@ -9,7 +9,7 @@ Feature: Create a new user
     {
       "name": "John Smith",
       "email": "john-smith@gamil.com",
-      "password": "**password**"
+      "password": "**-Pa55w0rD-**"
     }
     """
     Then the response status code should be 201
