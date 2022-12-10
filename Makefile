@@ -44,4 +44,4 @@ http-put-course:
 	curl -X PUT --data name="ddd course" --data duration="500 hours" "http://127.0.0.1:8030/courses/1aab45ba-3c7a-4344-8936-78466eca77fa"
 
 http-put-user:
-	curl -X PUT --data name="John Smith" --data email=john.smith@mail.com --data password="123456" -i "http://127.0.0.1:8030/users/1aab45ba-3c7a-4344-8936-78466eca77fa"
+	curl -X PUT --data name="John Smith" --data email=john.smith@mail.com --data password="abc123A_" "http://127.0.0.1:8030/users/1aab45ba-3c7a-4344-8936-78466eca77fa"

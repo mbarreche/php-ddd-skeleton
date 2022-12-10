@@ -1,6 +1,6 @@
 <?php
 
-namespace CodelyTv\Mooc\Users\Infraestructure;
+namespace CodelyTv\Mooc\Users\Infrastructure\Persistence;
 
 use CodelyTv\Mooc\Users\Domain\User;
 use CodelyTv\Mooc\Users\Domain\UserRepository;

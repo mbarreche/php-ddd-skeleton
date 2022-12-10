@@ -8,12 +8,14 @@ use InvalidArgumentException;
 class UserPassword extends StringValueObject
 {
     private const MIN_LENGTH = 8;
+    private $hashValue;
 
     /** @throws InvalidArgumentException */
     public function __construct(string $value)
     {
-        $this->ensureIsValidPassword($value);
         parent::__construct($value);
+        $this->ensureIsValidPassword($value);
+        $this->hashValue = password_hash($value, PASSWORD_DEFAULT);
     }
 
     /** @throws InvalidArgumentException */
@@ -38,6 +40,6 @@ class UserPassword extends StringValueObject
 
     public function hashValue(): string
     {
-        return password_hash($this->value(), PASSWORD_DEFAULT);
+        return $this->hashValue;
     }
 }
