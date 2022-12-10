@@ -11,11 +11,26 @@ class UserPassword extends StringValueObject
     private $hashValue;
 
     /** @throws InvalidArgumentException */
-    public function __construct(string $value)
+    private function __construct(string $value, ?string $hash)
     {
         parent::__construct($value);
-        $this->ensureIsValidPassword($value);
-        $this->hashValue = sha1($value);
+
+        if ($hash === null) {
+            $this->ensureIsValidPassword($value);
+            $this->hashValue = sha1($value);
+        } else {
+            $this->hashValue = $hash;
+        }
+    }
+
+    public static function createPasswordByRaw(string $raw): self
+    {
+        return new self($raw, null);
+    }
+
+    public static function createPasswordByHash(string $hash): self
+    {
+        return new self('', $hash);
     }
 
     /** @throws InvalidArgumentException */

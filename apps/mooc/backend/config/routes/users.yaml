@@ -1,4 +1,9 @@
 users_put:
   path: /users/{id}
   controller: CodelyTv\Apps\Mooc\Backend\Controller\Users\UsersPutController
-  methods:  [PUT]
+  methods: [PUT]
+
+users_search:
+  path: /users/{id}
+  controller: CodelyTv\Apps\Mooc\Backend\Controller\Users\SearchUserByIdGetController
+  methods: [GET]

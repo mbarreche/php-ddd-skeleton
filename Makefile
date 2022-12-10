@@ -45,3 +45,6 @@ http-put-course:
 
 http-put-user:
 	curl -X PUT --data name="John Smith" --data email=john.smith@mail.com --data password="abc123A_" "http://127.0.0.1:8030/users/1aab45ba-3c7a-4344-8936-78466eca77fa"
+
+http-get-user:
+	curl "http://127.0.0.1:8030/users/1aab45ba-3c7a-4344-8936-78466eca77fa"

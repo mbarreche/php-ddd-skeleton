@@ -24,7 +24,7 @@ class UserCreator
             new UserId($request->id()),
             new UserName($request->name()),
             new UserEmail($request->email()),
-            new UserPassword($request->password())
+            UserPassword::createPasswordByRaw($request->password())
         );
         $this->repository->saveUser($user);
     }

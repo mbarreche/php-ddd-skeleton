@@ -9,7 +9,7 @@ class UserPasswordMother
 {
     public static function create(string $value): UserPassword
     {
-        return new UserPassword($value);
+        return UserPassword::createPasswordByRaw($value);
     }
 
     public static function random(): UserPassword
