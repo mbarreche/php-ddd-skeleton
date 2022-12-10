@@ -30,3 +30,17 @@ Feature: Create a new user
     <CodelyTv\Mooc\Users\Domain\UserId> does not allow the value <abc>.
     """
 
+  Scenario: A reapeated user
+    Given I send twice a PUT request to "/users/00000000-0000-0000-0000-000000000000" with body:
+    """
+    {
+      "name": "Test",
+      "email": "test@test.com",
+      "password": "**-Pa55w0rD-**"
+    }
+    """
+    Then the response status code should be 400
+    And the response content should be:
+    """
+    The user is already recorded in the database
+    """

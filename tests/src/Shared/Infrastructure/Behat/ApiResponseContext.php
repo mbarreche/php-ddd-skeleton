@@ -22,13 +22,27 @@ final class ApiResponseContext extends RawMinkContext
     }
 
     /**
-     * @Then the response content should be:
+     * @Then the response json should be:
      */
-    public function theResponseContentShouldBe(PyStringNode $expectedResponse): void
+    public function theResponseJsonContentShouldBe(PyStringNode $expectedResponse): void
     {
         $expected = $this->sanitizeOutput($expectedResponse->getRaw());
         $actual   = $this->sanitizeOutput($this->sessionHelper->getResponse());
 
+        if ($expected !== $actual) {
+            throw new RuntimeException(
+                sprintf("The outputs does not match!\n\n-- Expected:\n%s\n\n-- Actual:\n%s", $expected, $actual)
+            );
+        }
+    }
+
+    /**
+     * @Then the response content should be:
+     */
+    public function theResponseContentShouldBe(PyStringNode $expectedResponse): void
+    {
+        $expected = $expectedResponse->getRaw();
+        $actual   = $this->sessionHelper->getResponse();
         if ($expected !== $actual) {
             throw new RuntimeException(
                 sprintf("The outputs does not match!\n\n-- Expected:\n%s\n\n-- Actual:\n%s", $expected, $actual)
