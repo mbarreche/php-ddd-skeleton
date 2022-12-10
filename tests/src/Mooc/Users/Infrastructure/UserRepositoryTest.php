@@ -27,4 +27,14 @@ class UserRepositoryTest extends InfrastructureTestCase
         $this->expectException(UserNotFoundException::class);
         $this->repository()->searchById(UserIdMother::random());
     }
+
+    /** @test */
+    public function it_should_return_an_existing_user(): void
+    {
+        $user = UserMother::random();
+
+        $this->repository()->saveUser($user);
+
+        $this->assertEquals($user, $this->repository()->searchById($user->id()));
+    }
 }
