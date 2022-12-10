@@ -14,3 +14,19 @@ Feature: Create a new user
     """
     Then the response status code should be 201
     And the response should be empty
+
+  Scenario: An invalid id
+    Given I send a PUT request to "/users/abc" with body:
+    """
+    {
+      "name": "John Smith",
+      "email": "john-smith@gamil.com",
+      "password": "**-Pa55w0rD-**"
+    }
+    """
+    Then the response status code should be 400
+    And the response content should be:
+    """
+    <CodelyTv\Mooc\Users\Domain\UserId> does not allow the value <abc>.
+    """
+
