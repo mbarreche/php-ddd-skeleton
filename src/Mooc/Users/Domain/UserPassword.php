@@ -15,7 +15,7 @@ class UserPassword extends StringValueObject
     {
         parent::__construct($value);
         $this->ensureIsValidPassword($value);
-        $this->hashValue = password_hash($value, PASSWORD_DEFAULT);
+        $this->hashValue = sha1($value);
     }
 
     /** @throws InvalidArgumentException */
