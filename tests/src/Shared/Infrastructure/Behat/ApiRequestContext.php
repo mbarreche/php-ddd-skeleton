@@ -34,4 +34,13 @@ final class ApiRequestContext extends RawMinkContext
     {
         $this->request->sendRequestWithPyStringNode($method, $this->locatePath($url), $body);
     }
+
+    /**
+     * @Given I send twice a :method request to :url with body:
+     */
+    public function iSendTwiceARequestToWithBody($method, $url, PyStringNode $body): void
+    {
+        $this->iSendARequestToWithBody($method, $url, $body);
+        $this->iSendARequestToWithBody($method, $url, $body);
+    }
 }

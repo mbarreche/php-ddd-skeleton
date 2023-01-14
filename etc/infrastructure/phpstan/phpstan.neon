@@ -1,0 +1,9 @@
+includes:
+	- /app/etc/infrastructure/phpstan/phpstan-baseline.neon
+
+parameters:
+	level: 6
+	paths:
+		- /app/src
+		- /app/tests
+		- /app/apps/mooc/backend/src

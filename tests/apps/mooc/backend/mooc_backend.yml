@@ -23,3 +23,9 @@ mooc_backend:
         - CodelyTv\Tests\Shared\Infrastructure\Behat\FeatureContext
         - CodelyTv\Tests\Shared\Infrastructure\Behat\ApiRequestContext
         - CodelyTv\Tests\Shared\Infrastructure\Behat\ApiResponseContext
+
+    users:
+      paths: [ tests/apps/mooc/backend/features/users ]
+      contexts:
+        - CodelyTv\Tests\Shared\Infrastructure\Behat\ApiRequestContext
+        - CodelyTv\Tests\Shared\Infrastructure\Behat\ApiResponseContext

@@ -20,8 +20,30 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     ports:
-      - "9090:9001"
+      - "9090:9000"
     volumes:
       - .:/app:delegated
     env_file:
       - .env
+    depends_on:
+      - db
+
+  db:
+    container_name: codelytv-ddd-skeleton-db
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'mooc'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_ROOT_PASSWORD: ''
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./databases:/docker-entrypoint-initdb.d
+
+networks:
+  net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.29.0.0/24
