@@ -2,7 +2,13 @@
 
 namespace CodelyTv\Mooc\Users\Domain;
 
-class User
+use CodelyTv\Mooc\Courses\Domain\CourseCreatedDomainEvent;
+use CodelyTv\Mooc\Courses\Domain\CourseDuration;
+use CodelyTv\Mooc\Courses\Domain\CourseId;
+use CodelyTv\Mooc\Courses\Domain\CourseName;
+use CodelyTv\Shared\Domain\Aggregate\AggregateRoot;
+
+class User extends AggregateRoot
 {
     private $id;
     private $name;
@@ -16,6 +22,16 @@ class User
         $this->email = $email;
         $this->password = $password;
     }
+
+    public static function create(UserId $id, UserName $name, UserEmail $email, UserPassword $password): self
+    {
+        $course = new self($id, $name, $email, $password);
+
+        $course->record(new UserCreatedDomainEvent($id->value(), $name->value(), $email->value(), $password->value()));
+
+        return $course;
+    }
+
 
     public function id(): UserId
     {
