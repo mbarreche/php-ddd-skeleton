@@ -8,24 +8,28 @@ use CodelyTv\Mooc\Users\Domain\UserId;
 use CodelyTv\Mooc\Users\Domain\UserName;
 use CodelyTv\Mooc\Users\Domain\UserPassword;
 use CodelyTv\Mooc\Users\Domain\UserRepository;
+use CodelyTv\Shared\Domain\Bus\DomainEventPublisher;
 
 class UserCreator
 {
     private $repository;
+    private $publisher;
 
-    public function __construct(UserRepository $repository)
+    public function __construct(UserRepository $repository, DomainEventPublisher $publisher)
     {
         $this->repository = $repository;
+        $this->publisher = $publisher;
     }
 
     public function __invoke(CreateUserRequest $request)
     {
-        $user = new User(
+        $user = User::create(
             new UserId($request->id()),
             new UserName($request->name()),
             new UserEmail($request->email()),
             UserPassword::createPasswordByRaw($request->password())
         );
         $this->repository->saveUser($user);
+        $this->publisher->publish(...$user->pullDomainEvents());
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
-namespace CodelyTv\Mooc\Users\Infrastructure\Persistence\Mappings;
+namespace CodelyTv\Mooc\Users\Infrastructure\Persistence\Doctrine;
 
 use CodelyTv\Mooc\Users\Domain\UserId;
-use CodelyTv\Shared\Infrastructure\Persistence\Mappings\UuidType;
+use CodelyTv\Shared\Infrastructure\Persistence\Doctrine\UuidType;
 
 class UserIdType extends UuidType
 {
